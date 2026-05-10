@@ -351,18 +351,6 @@ export function SugarDownHome() {
                 />
               </div>
             </figure>
-            <figure className="care-visual-card fade-up fade-up-d3">
-              <div className="care-visual-frame">
-                <img
-                  src="/banner-3.png"
-                  alt="Sugar Down full range"
-                  width={640}
-                  height={480}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </figure>
           </div>
         </div>
       </section>
