@@ -931,24 +931,8 @@ body {
 
 .sd-layout-stack > main {
   flex: 1 0 auto;
-  padding-top: calc(var(--header-height) + 1.25rem);
+  padding-top: var(--header-height);
   animation: sd-main-in var(--sd-ani-slow) ease-out both;
-}
-
-/*
- * Sugar Down routes already bake fixed-header offset into heroes (120px, 80px, etc.).
- * Keeping main padding-top here doubles the gap vs legacy / Vercel static HTML.
- */
-.sd-layout-stack
-  > main:where(
-    :has(.sd-home-root),
-    :has(.sdp-about),
-    :has(.sdp-contact),
-    :has(.sdp-track),
-    :has(.sdp-legal-page),
-    :has(.collection.sd-catalog)
-  ) {
-  padding-top: 0;
 }
 
 /* Hash nav (Our System / Ingredients / …): anchor lands below fixed header */
@@ -1020,6 +1004,8 @@ select {
 -------------------------------------------------- */
 html,
 body {
+  margin: 0;
+  padding: 0;
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -1039,15 +1025,19 @@ body {
   }
 
   .sd-layout-stack > main {
-    padding-top: calc(var(--header-height) + 0.85rem);
+    padding-top: var(--header-height);
   }
 
   .sd-header {
     gap: 0.45rem;
     padding: 0.65rem 0.75rem;
+    min-height: var(--header-height);
+    box-sizing: border-box;
+    flex-wrap: nowrap;
   }
 
   .sd-brand {
+    flex: 1 1 auto;
     min-width: 0;
   }
 
@@ -1073,6 +1063,7 @@ body {
   .sd-nav-actions {
     margin-left: auto;
     gap: 0.2rem;
+    flex: 0 0 auto;
   }
 
   .sd-order-now,
@@ -1113,5 +1104,138 @@ body {
 
   .sd-nav-actions {
     gap: 0.1rem;
+  }
+}
+
+.sd-support-float {
+  position: fixed;
+  right: 0.9rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+/* Prevent floating actions from covering cart checkout on mobile/aside overlays. */
+.overlay.expanded ~ .sd-support-float {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+.sd-support-float-btn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 10px 26px rgba(15, 26, 19, 0.2);
+}
+
+.sd-support-float-btn svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.sd-support-float-btn-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.sd-support-float-btn--call {
+  background: linear-gradient(145deg, #1e6a42, #1b4d2e);
+  font-size: 1.1rem;
+}
+
+.sd-support-float-btn--whatsapp {
+  background: linear-gradient(145deg, #2dd06f, #169c4f);
+}
+
+@media (max-width: 430px) {
+  .sd-support-float {
+    right: 0.75rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sd-support-float-btn {
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+
+  body:has(.sd-home-root) .sd-support-float {
+    bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* --------------------------------------------------
+   Fast global mobile pass (all routes)
+-------------------------------------------------- */
+@media (max-width: 768px) {
+  .sd-layout-stack > main {
+    overflow-x: clip;
+  }
+
+  /* Prevent horizontal overflow from rich content/assets across pages */
+  img,
+  video,
+  canvas,
+  iframe,
+  table {
+    max-width: 100%;
+    height: auto;
+  }
+
+  pre,
+  code,
+  table {
+    overflow-x: auto;
+  }
+
+  /* Keep mobile forms usable (avoid iOS auto-zoom and tiny controls) */
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 16px;
+  }
+
+  .sd-page,
+  .sdp-about,
+  .sdp-contact,
+  .sdp-track,
+  .sdp-legal-page,
+  .sd-catalog,
+  .sd-pdp,
+  .sd-cart-page {
+    padding-left: clamp(0.85rem, 4vw, 1.15rem) !important;
+    padding-right: clamp(0.85rem, 4vw, 1.15rem) !important;
+    min-width: 0;
+  }
+
+  /* Safety net for multi-column layouts on small screens */
+  .products-grid,
+  .collections-grid,
+  .sd-pdp-inner,
+  .sdp-about-grid,
+  .sdp-contact-grid,
+  .sdp-track-grid,
+  .sdp-pol-grid,
+  .sdp-legal-grid {
+    grid-template-columns: 1fr !important;
+    min-width: 0;
+  }
+
+  .sd-pdp-breadcrumb ol,
+  .header-menu-mobile,
+  .header-ctas,
+  .sd-nav-actions {
+    flex-wrap: wrap;
   }
 }
