@@ -1,4 +1,5 @@
 import {Link} from 'react-router';
+import {useEffect, useState} from 'react';
 import {SUPPORT_WHATSAPP_URL} from '~/lib/contact';
 import {HomeFaq} from './HomeFaq';
 import {HomeReviews} from './HomeReviews';
@@ -8,6 +9,28 @@ import {HomeReviews} from './HomeReviews';
  * Styling: app/styles/sugar-down-home.css (copied from legacy-css/home.css).
  */
 export function SugarDownHome() {
+  const careVisualSlides = [
+    {
+      src: '/banner-1.png',
+      alt: 'Sugar Down Diabetic Care',
+    },
+    {
+      src: '/banner-2.png',
+      alt: 'Sugar Down family wellness',
+    },
+  ];
+  const [activeCareVisualSlide, setActiveCareVisualSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveCareVisualSlide((prev) => (prev + 1) % careVisualSlides.length);
+    }, 2000);
+
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, [careVisualSlides.length]);
+
   return (
     <div className="sd-home-root">
       <section className="hero" id="home">
@@ -327,30 +350,25 @@ export function SugarDownHome() {
       >
         <div className="care-visual-bridge">
           <div className="care-visual-grid">
-            <figure className="care-visual-card fade-up fade-up-d1">
-              <div className="care-visual-frame">
-                <img
-                  src="/banner-1.png"
-                  alt="Sugar Down Diabetic Care"
-                  width={640}
-                  height={480}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </figure>
-            <figure className="care-visual-card fade-up fade-up-d2">
-              <div className="care-visual-frame">
-                <img
-                  src="/banner-2.png"
-                  alt="Sugar Down family wellness"
-                  width={640}
-                  height={480}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </figure>
+            <div className="care-visual-stack fade-up fade-up-d1">
+              {careVisualSlides.map((slide, index) => (
+                <figure
+                  key={slide.src}
+                  className={`care-visual-card ${index === activeCareVisualSlide ? 'is-active' : ''}`}
+                >
+                  <div className="care-visual-frame">
+                    <img
+                      src={slide.src}
+                      alt={slide.alt}
+                      width={640}
+                      height={480}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </figure>
+              ))}
+            </div>
           </div>
         </div>
       </section>

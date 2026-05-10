@@ -317,14 +317,28 @@ body {
   box-sizing: border-box;
 }
 .care-visual-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(14px, 2vw, 22px);
-  align-items: stretch;
+  display: flex;
+  justify-content: center;
+}
+.care-visual-stack {
+  position: relative;
+  width: min(720px, 100%);
+  min-height: 360px;
 }
 .care-visual-card {
   margin: 0;
   min-width: 0;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+.care-visual-card.is-active {
+  opacity: 1;
+  transform: translateY(0);
 }
 .care-visual-frame {
   border-radius: 20px;
@@ -334,14 +348,14 @@ body {
     0 24px 56px rgba(0, 0, 0, 0.35),
     0 0 0 1px rgba(255, 255, 255, 0.06) inset;
   /* Wider tile + taller than 16:10 so product art reads larger */
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 10;
   background: #0f1411;
 }
 .care-visual-frame img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: center;
   display: block;
   vertical-align: middle;
 }
@@ -353,10 +367,12 @@ body {
     padding: 0;
   }
   .care-visual-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    width: 100%;
     max-width: 560px;
     margin: 0 auto;
+  }
+  .care-visual-stack {
+    min-height: 260px;
   }
   .care-visual-frame {
     aspect-ratio: 4 / 3;
