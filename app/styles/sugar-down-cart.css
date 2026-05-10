@@ -617,6 +617,13 @@
     animation: none !important;
   }
 
+  .overlay.expanded:has(.sd-aside--cart) .sd-aside--cart .cart-line,
+  .overlay.expanded:has(.sd-aside--cart) .sd-aside--cart .sd-cart-summary,
+  .overlay.expanded:has(.sd-aside--cart) .sd-aside--cart header {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   .sd-cart-qty-btn,
   .sd-cart-remove,
   .sd-cart-checkout-btn {
