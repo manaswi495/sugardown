@@ -267,3 +267,65 @@
     gap: 20px 30px;
   }
 }
+
+@media (max-width: 430px) {
+  .footer.premium-footer {
+    padding: 56px 0 30px;
+  }
+
+  .premium-footer .footer-top,
+  .premium-footer .footer-divider,
+  .premium-footer .footer-bottom {
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+  }
+
+  .premium-footer .footer-top {
+    gap: 34px;
+    margin-bottom: 44px;
+  }
+
+  .premium-footer .logo-main {
+    font-size: 22px;
+  }
+
+  .premium-footer .logo-sub {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .premium-footer .footer-tagline,
+  .premium-footer .footer-mission,
+  .premium-footer .support-text {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .premium-footer .col-title {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  .premium-footer .footer-link-list a,
+  .premium-footer .support-link {
+    font-size: 14px;
+  }
+
+  .premium-footer .action-btns {
+    flex-direction: column;
+  }
+
+  .premium-footer .action-btn {
+    width: 100%;
+  }
+
+  .premium-footer .footer-bottom-links {
+    gap: 12px 18px;
+  }
+
+  .premium-footer .footer-bottom-links a {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+}

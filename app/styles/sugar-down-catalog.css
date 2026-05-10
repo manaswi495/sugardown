@@ -75,16 +75,23 @@
   color: inherit;
   transition:
     transform 0.3s,
-    box-shadow 0.3s;
+    box-shadow 0.3s,
+    border-color 0.3s;
 }
 
 .sd-catalog .products-grid .product-item:hover {
   transform: translateY(-4px);
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.09);
+  border-color: rgba(200, 151, 42, 0.35);
 }
 
 .sd-catalog .products-grid .product-item img {
   border-radius: 0;
+  transition: transform 420ms ease;
+}
+
+.sd-catalog .products-grid .product-item:hover img {
+  transform: scale(1.03);
 }
 
 .sd-catalog .products-grid .product-item h4 {
@@ -479,5 +486,59 @@
   }
   .sd-catalog .sd-legacy-prod-img {
     height: 160px;
+  }
+}
+
+@media (max-width: 430px) {
+  .sd-catalog .sd-catalog-top {
+    padding: 74px 0.9rem 28px;
+  }
+
+  .sd-catalog .sd-catalog-top h1 {
+    font-size: clamp(1.8rem, 8.6vw, 2.2rem);
+    margin-bottom: 8px;
+  }
+
+  .sd-catalog .sd-catalog-top p {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+
+  .sd-catalog .wrap {
+    padding: 24px 0.9rem 40px;
+  }
+
+  .sd-catalog .products-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .sd-catalog .products-grid .product-item {
+    border-radius: 14px;
+  }
+
+  .sd-catalog .products-grid .product-item h4 {
+    font-size: 0.94rem;
+    line-height: 1.35;
+    padding: 12px 12px 2px;
+  }
+
+  .sd-catalog .products-grid .product-item small {
+    display: block;
+    font-size: 0.92rem;
+    padding: 0 12px 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .sd-catalog .sd-catalog-top {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
+
+  .sd-catalog .wrap {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
   }
 }

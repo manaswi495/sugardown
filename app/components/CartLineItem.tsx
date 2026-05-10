@@ -45,6 +45,8 @@ export function CartLineItem({
               data={image}
               height={100}
               loading="lazy"
+              decoding="async"
+              sizes="88px"
               width={100}
             />
           </div>

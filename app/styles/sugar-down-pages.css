@@ -234,6 +234,7 @@
 }
 .sdp-about .sdp-ab-team-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(15, 26, 19, 0.08);
 }
 .sdp-about .sdp-ab-team-av {
   width: 72px;
@@ -735,6 +736,7 @@
 }
 .sdp-track .sdp-tr-search-btn:hover {
   background: var(--sdp-gm);
+  transform: translateY(-1px);
 }
 .sdp-track .sdp-tr-search-hint {
   font-size: 11px;
@@ -1070,4 +1072,74 @@
 }
 .sdp-policy-inner .sdp-pol-body li {
   margin-bottom: 10px;
+}
+
+@media (max-width: 430px) {
+  .sdp-about .sdp-ab-hero,
+  .sdp-contact .sdp-ct-hero,
+  .sdp-legal-hero {
+    padding-top: 74px;
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    padding-bottom: 30px;
+  }
+
+  .sdp-about .sdp-ab-sec,
+  .sdp-contact .sdp-ct-wrap,
+  .sdp-track .sdp-tr-wrap,
+  .sdp-legal-content {
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+  }
+
+  .sdp-about .sdp-ab-sec {
+    padding-top: 28px;
+    padding-bottom: 40px;
+  }
+
+  .sdp-contact .sdp-ct-wrap {
+    padding-top: 24px;
+    padding-bottom: 40px;
+  }
+
+  .sdp-track .sdp-tr-wrap {
+    padding-top: 78px;
+    padding-bottom: 40px;
+  }
+
+  .sdp-track .sdp-tr-search-box,
+  .sdp-track .sdp-tr-result-body,
+  .sdp-track .sdp-tr-recent-box {
+    padding: 0.95rem;
+  }
+
+  .sdp-track .sdp-tr-order-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sdp-legal-hero h1 {
+    font-size: clamp(1.9rem, 8.8vw, 2.2rem);
+  }
+
+  .sdp-policy-inner .sdp-pol-body {
+    font-size: 0.92rem;
+    line-height: 1.68;
+  }
+
+  .sdp-policy-inner .sdp-pol-body h2,
+  .sdp-policy-inner .sdp-pol-body h3 {
+    font-size: 1.22rem;
+    margin: 1.5rem 0 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .sdp-about .sdp-ab-hero,
+  .sdp-contact .sdp-ct-hero,
+  .sdp-track .sdp-tr-wrap,
+  .sdp-legal-hero,
+  .sdp-legal-content {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
 }

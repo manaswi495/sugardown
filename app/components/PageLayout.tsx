@@ -1,4 +1,4 @@
-import {Await, Link} from 'react-router';
+import {Await, Link, useLocation} from 'react-router';
 import {Suspense, useId} from 'react';
 import type {
   CartApiQueryFragment,
@@ -14,6 +14,7 @@ import {
   SearchFormPredictive,
 } from '~/components/SearchFormPredictive';
 import {SearchResultsPredictive} from '~/components/SearchResultsPredictive';
+import {useGlobalReveal} from '~/components/useGlobalReveal';
 
 interface PageLayoutProps {
   cart: Promise<CartApiQueryFragment | null>;
@@ -31,6 +32,9 @@ export function PageLayout({
   isLoggedIn,
   publicStoreDomain,
 }: PageLayoutProps) {
+  const location = useLocation();
+  useGlobalReveal(location.pathname);
+
   return (
     <Aside.Provider>
       <CartAside cart={cart} />

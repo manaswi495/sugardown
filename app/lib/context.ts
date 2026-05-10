@@ -51,6 +51,8 @@ export async function createHydrogenRouterContext(
       i18n: {language: 'EN', country: 'US'},
       cart: {
         queryFragment: CART_QUERY_FRAGMENT,
+        // Keep cart payload small for faster drawer open/render.
+        numCartLines: 20,
       },
     },
     additionalContext,

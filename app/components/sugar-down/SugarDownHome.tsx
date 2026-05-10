@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import {SUPPORT_WHATSAPP_URL} from '~/lib/contact';
 import {HomeFaq} from './HomeFaq';
 import {HomeReviews} from './HomeReviews';
+import familyLandscapeImage from '../../../f99d0750-43b2-4397-b96b-2bbba0f11c65.jpg';
 
 /**
  * Sugar Down marketing sections ported from legacy-pages/home.page (subset).
@@ -11,12 +12,15 @@ import {HomeReviews} from './HomeReviews';
 export function SugarDownHome() {
   const careVisualSlides = [
     {
-      src: '/banner-1.png',
+      src: familyLandscapeImage,
       alt: 'Sugar Down Diabetic Care',
+      imageStyle: {objectFit: 'cover' as const, objectPosition: 'center'},
     },
     {
       src: '/banner-2.png',
       alt: 'Sugar Down family wellness',
+      // Crop this frame to match the tighter visual treatment.
+      imageStyle: {objectFit: 'cover' as const, objectPosition: 'center 28%'},
     },
   ];
   const [activeCareVisualSlide, setActiveCareVisualSlide] = useState(0);
@@ -364,6 +368,7 @@ export function SugarDownHome() {
                       height={480}
                       loading="lazy"
                       decoding="async"
+                      style={slide.imageStyle}
                     />
                   </div>
                 </figure>

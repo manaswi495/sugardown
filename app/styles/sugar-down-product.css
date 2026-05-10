@@ -111,6 +111,9 @@
   justify-content: center;
   /* Tighter frame so the product reads larger — still safe for tall PNGs */
   padding: clamp(6px, 1.75vw, 22px);
+  transition:
+    transform 320ms ease,
+    box-shadow 320ms ease;
 }
 
 .sd-pdp .product-image--empty {
@@ -130,6 +133,18 @@
   object-position: center center;
   aspect-ratio: unset !important;
   vertical-align: middle;
+  transition: transform 420ms ease;
+}
+
+.sd-pdp .product-image:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 26px rgba(27, 77, 46, 0.11),
+    0 28px 68px rgba(15, 26, 19, 0.08);
+}
+
+.sd-pdp .product-image:hover img {
+  transform: scale(1.02);
 }
 
 .sd-pdp-main {
@@ -476,4 +491,120 @@
 
 .sd-pdp-prose a:hover {
   color: var(--sd-green-dark);
+}
+
+@media (max-width: 900px) {
+  .sd-pdp {
+    padding: 1.25rem 0.9rem 2rem;
+  }
+
+  .sd-pdp-gallery {
+    position: static;
+    top: auto;
+  }
+
+  .sd-pdp .product-image img {
+    max-height: 58vh;
+  }
+}
+
+@media (max-width: 430px) {
+  .sd-pdp {
+    padding: 1rem 0.85rem 1.6rem;
+  }
+
+  .sd-pdp-inner {
+    gap: 1rem;
+  }
+
+  .sd-pdp-breadcrumb ol {
+    font-size: 0.74rem;
+  }
+
+  .sd-pdp-breadcrumb [aria-current='page'] {
+    max-width: 10.5rem;
+  }
+
+  .sd-pdp .product-image {
+    border-radius: 14px;
+    padding: 8px;
+  }
+
+  .sd-pdp .product-image img {
+    max-height: 46vh;
+  }
+
+  .sd-pdp-buy-card {
+    border-radius: 14px;
+    padding: 1rem;
+  }
+
+  .sd-pdp-title-primary {
+    font-size: clamp(1.5rem, 8vw, 1.95rem);
+  }
+
+  .sd-pdp-title-sub {
+    -webkit-line-clamp: 3;
+    font-size: 0.95rem;
+  }
+
+  .sd-pdp-stock {
+    width: 100%;
+    font-size: 0.75rem;
+  }
+
+  .sd-pdp .product-price {
+    font-size: 1.45rem;
+  }
+
+  .sd-pdp .product-options-item {
+    min-height: 40px;
+    padding: 0.35rem 0.8rem !important;
+    font-size: 0.86rem;
+  }
+
+  .sd-pdp-add-btn {
+    min-height: 46px;
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .sd-pdp-trust-list li {
+    font-size: 0.78rem;
+  }
+
+  .sd-pdp-details {
+    border-radius: 14px;
+    padding: 1rem;
+  }
+
+  .sd-pdp-details h2 {
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.55rem;
+  }
+
+  .sd-pdp-prose {
+    font-size: 0.93rem;
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 360px) {
+  .sd-pdp {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
+
+  .sd-pdp .product-options-grid {
+    gap: 0.4rem;
+  }
+
+  .sd-pdp .product-options-item {
+    font-size: 0.82rem;
+    padding: 0.32rem 0.6rem !important;
+  }
+
+  .sd-pdp-breadcrumb [aria-current='page'] {
+    max-width: 8rem;
+  }
 }
