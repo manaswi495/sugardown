@@ -102,14 +102,17 @@ export default function Product() {
     getAdjacentAndFirstAvailableVariants(product),
   );
 
+  const safeSelectedVariant =
+    selectedVariant ?? product.selectedOrFirstAvailableVariant;
+
   // Sets the search param to the selected variant without navigation
   // only when no search params are set in the url
-  useSelectedOptionInUrlParam(selectedVariant.selectedOptions);
+  useSelectedOptionInUrlParam(safeSelectedVariant?.selectedOptions ?? []);
 
   // Get the product options array
   const productOptions = getProductOptions({
     ...product,
-    selectedOrFirstAvailableVariant: selectedVariant,
+    selectedOrFirstAvailableVariant: safeSelectedVariant,
   });
 
   const {title, descriptionHtml} = product;
@@ -135,7 +138,7 @@ export default function Product() {
           ? galleryFallback
           : mediaImageFallback;
 
-  const inStock = selectedVariant?.availableForSale ?? false;
+  const inStock = safeSelectedVariant?.availableForSale ?? false;
 
   return (
     <section className="sd-pdp">
@@ -187,8 +190,8 @@ export default function Product() {
             <div className="sd-pdp-price-block">
               <div className="sd-pdp-price-row">
                 <ProductPrice
-                  price={selectedVariant?.price}
-                  compareAtPrice={selectedVariant?.compareAtPrice}
+                  price={safeSelectedVariant?.price}
+                  compareAtPrice={safeSelectedVariant?.compareAtPrice}
                 />
               </div>
               <p className="sd-pdp-price-note">
@@ -228,10 +231,11 @@ export default function Product() {
             {
               id: product.id,
               title: product.title,
-              price: selectedVariant?.price.amount || '0',
+              // Guard against products with incomplete variant pricing data.
+              price: safeSelectedVariant?.price?.amount || '0',
               vendor: product.vendor,
-              variantId: selectedVariant?.id || '',
-              variantTitle: selectedVariant?.title || '',
+              variantId: safeSelectedVariant?.id || '',
+              variantTitle: safeSelectedVariant?.title || '',
               quantity: 1,
             },
           ],
