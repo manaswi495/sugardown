@@ -173,9 +173,45 @@
 .sd-catalog .sd-legacy-kit-header {
   background: linear-gradient(135deg, var(--gd), #0d3320);
   padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
 }
 .sd-catalog .sd-legacy-kit-card.featured .sd-legacy-kit-header {
   background: linear-gradient(135deg, #0d4a36, #1a8c5e);
+}
+.sd-catalog .sd-legacy-kit-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7, 24, 16, 0.18) 0%, rgba(7, 24, 16, 0.78) 68%, rgba(7, 24, 16, 0.92) 100%),
+    radial-gradient(circle at 80% 8%, rgba(200, 151, 42, 0.2), transparent 42%);
+  pointer-events: none;
+  z-index: 1;
+}
+.sd-catalog .sd-legacy-kit-hero {
+  position: relative;
+  margin: -8px -8px 14px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  z-index: 0;
+}
+.sd-catalog .sd-legacy-kit-hero img {
+  width: 100%;
+  height: 170px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(1.03) contrast(1.02);
+}
+.sd-catalog .sd-legacy-kit-hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 46%;
+  background: linear-gradient(180deg, rgba(7, 24, 16, 0), rgba(7, 24, 16, 0.66));
 }
 .sd-catalog .sd-legacy-kit-icon {
   font-size: 44px;
@@ -202,16 +238,22 @@
   font-weight: 900;
   color: #fff;
   margin-bottom: 4px;
+  position: relative;
+  z-index: 2;
 }
 .sd-catalog .sd-legacy-kit-sub {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.55);
   margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
 }
 .sd-catalog .sd-legacy-kit-price-row {
   display: flex;
   align-items: baseline;
   gap: 8px;
+  position: relative;
+  z-index: 2;
 }
 .sd-catalog .sd-legacy-kit-price {
   font-family: 'Playfair Display', serif;
@@ -223,6 +265,8 @@
   font-size: 11px;
   color: var(--gold-l);
   margin-top: 4px;
+  position: relative;
+  z-index: 2;
 }
 .sd-catalog .sd-legacy-kit-body {
   padding: 24px 28px 28px;
@@ -333,6 +377,8 @@
   justify-content: center;
   flex-direction: column;
   gap: 8px;
+  position: relative;
+  overflow: hidden;
 }
 .sd-catalog .sd-legacy-prod-img.p1 {
   background: linear-gradient(135deg, #1a5c30, #2e7d4f);
@@ -352,6 +398,32 @@
   background: rgba(255, 255, 255, 0.1);
   padding: 3px 10px;
   border-radius: 20px;
+}
+.sd-catalog .sd-legacy-prod-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 320ms ease;
+}
+.sd-catalog .sd-legacy-prod-img::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 48%;
+  background: linear-gradient(180deg, rgba(7, 24, 16, 0), rgba(7, 24, 16, 0.68));
+}
+.sd-catalog .sd-legacy-prod-img > span:last-child {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  margin: 0;
+  z-index: 1;
+}
+.sd-catalog .sd-legacy-prod-card:hover .sd-legacy-prod-img img {
+  transform: scale(1.04);
 }
 .sd-catalog .sd-legacy-prod-body {
   padding: 20px;

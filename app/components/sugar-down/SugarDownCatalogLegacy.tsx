@@ -1,4 +1,9 @@
 import {Link} from 'react-router';
+import coreKitImage from '../../../3.png';
+import balancedKitImage from '../../../2.png';
+import pravahiImage from '../../../pravahi.png';
+import careImage from '../../../care.png';
+import sleepImage from '../../../sleep.png';
 
 /**
  * Legacy products.page marketing (kits, individuals, usage) above the live Shopify grid.
@@ -17,7 +22,9 @@ export function SugarDownCatalogLegacy() {
       <div className="sd-legacy-kits">
         <div className="sd-legacy-kit-card sd-legacy-kit-card--core">
           <div className="sd-legacy-kit-header">
-            <span className="sd-legacy-kit-icon">📦</span>
+            <div className="sd-legacy-kit-hero">
+              <img src={coreKitImage} alt="Core Kit products" loading="lazy" />
+            </div>
             <div className="sd-legacy-kit-name">Core Kit</div>
             <div className="sd-legacy-kit-sub">Morning + Daytime Care</div>
             <div className="sd-legacy-kit-price-row">
@@ -62,7 +69,9 @@ export function SugarDownCatalogLegacy() {
         <div className="sd-legacy-kit-card featured">
           <div className="sd-legacy-kit-featured-badge">⭐ Most Recommended</div>
           <div className="sd-legacy-kit-header">
-            <span className="sd-legacy-kit-icon">⭐</span>
+            <div className="sd-legacy-kit-hero">
+              <img src={balancedKitImage} alt="Balanced Kit products" loading="lazy" />
+            </div>
             <div className="sd-legacy-kit-name">Balanced Kit</div>
             <div className="sd-legacy-kit-sub">Morning + Daytime + Night Care</div>
             <div className="sd-legacy-kit-price-row">
@@ -114,7 +123,7 @@ export function SugarDownCatalogLegacy() {
       <div className="sd-legacy-products">
         <div className="sd-legacy-prod-card">
           <div className="sd-legacy-prod-img p1">
-            <span>🍃</span>
+            <img src={pravahiImage} alt="Pravahi Kwath product" loading="lazy" />
             <span>Morning Care</span>
           </div>
           <div className="sd-legacy-prod-body">
@@ -139,7 +148,7 @@ export function SugarDownCatalogLegacy() {
         </div>
         <div className="sd-legacy-prod-card">
           <div className="sd-legacy-prod-img p2">
-            <span>💊</span>
+            <img src={careImage} alt="Diabetes Care Capsules product" loading="lazy" />
             <span>Daytime Care</span>
           </div>
           <div className="sd-legacy-prod-body">
@@ -164,7 +173,7 @@ export function SugarDownCatalogLegacy() {
         </div>
         <div className="sd-legacy-prod-card">
           <div className="sd-legacy-prod-img p3">
-            <span>😴</span>
+            <img src={sleepImage} alt="Sleep Care Capsules product" loading="lazy" />
             <span>Night Care</span>
           </div>
           <div className="sd-legacy-prod-body">
