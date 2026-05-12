@@ -2,6 +2,7 @@ import {Link} from 'react-router';
 import {useEffect, useState} from 'react';
 import {SUPPORT_WHATSAPP_URL} from '~/lib/contact';
 import {HomeFaq} from './HomeFaq';
+import {HomePainStack} from './HomePainStack';
 import {HomeReviews} from './HomeReviews';
 import familyLandscapeImage from '../../../f99d0750-43b2-4397-b96b-2bbba0f11c65.jpg';
 
@@ -166,7 +167,9 @@ export function SugarDownHome() {
           <h2 className="sd-home-difference-title fade-up fade-up-d1">
             There are Thousands of Ayurvedic Brands.
             <br />
-            But <span className="accent">SUGAR DOWN Focuses</span> Entirely on
+            But{' '}
+            <span className="accent sd-logo-type">SUGAR DOWN</span>{' '}
+            <span className="accent">Focuses</span> Entirely on
             Diabetes.
           </h2>
           <p className="sd-home-difference-lede fade-up fade-up-d2">
@@ -175,169 +178,46 @@ export function SugarDownHome() {
             We have studied, formulated, and built our entire brand around one
             single condition — diabetes.
           </p>
-          <div
-            className="fade-up fade-up-d3"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr auto 1fr',
-              gap: 0,
-              maxWidth: '900px',
-              margin: '0 auto',
-              alignItems: 'stretch',
-            }}
-          >
-            <div
-              style={{
-                background: 'var(--white)',
-                border: '1px solid rgba(0,0,0,0.07)',
-                borderRadius: '20px 0 0 20px',
-                padding: '32px 28px',
-              }}
-            >
-              <div
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  color: 'var(--gray)',
-                  letterSpacing: '2px',
-                  textTransform: 'uppercase',
-                  marginBottom: '20px',
-                  textAlign: 'center',
-                }}
-              >
+          <div className="sd-home-compare fade-up fade-up-d3">
+            <div className="sd-home-compare-panel sd-home-compare-panel--other">
+              <div className="sd-home-compare-heading">
                 Other Brands
               </div>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '14px',
-                }}
-              >
+              <div className="sd-home-compare-list">
                 {[
                   'Sell 50+ products — diabetes is just one of many',
                   'One capsule twice a day — that is the whole "system"',
                   'No sleep support — ignores a major cause of high sugar',
                   'You buy, they forget you exist',
                 ].map((t) => (
-                  <div
-                    key={t}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '10px',
-                    }}
-                  >
-                    <span
-                      style={{
-                        color: '#E85454',
-                        fontSize: '15px',
-                        fontWeight: 700,
-                        flexShrink: 0,
-                      }}
-                    >
+                  <div key={t} className="sd-home-compare-item">
+                    <span className="sd-home-compare-mark sd-home-compare-mark--bad">
                       ✗
                     </span>
-                    <span
-                      style={{
-                        fontSize: '13px',
-                        color: 'var(--gray)',
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      {t}
-                    </span>
+                    <span className="sd-home-compare-text">{t}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '56px',
-                background: 'var(--green-dark)',
-                position: 'relative',
-                zIndex: 2,
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "'Playfair Display',serif",
-                  fontSize: '18px',
-                  fontWeight: 900,
-                  color: 'var(--gold)',
-                  writingMode: 'vertical-rl',
-                  letterSpacing: '6px',
-                }}
-              >
-                VS
-              </span>
+            <div className="sd-home-compare-vs">
+              <span>VS</span>
             </div>
-            <div
-              style={{
-                background: 'var(--green-dark)',
-                borderRadius: '0 20px 20px 0',
-                padding: '32px 28px',
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-            >
-              <div
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  color: 'var(--gold)',
-                  letterSpacing: '2px',
-                  textTransform: 'uppercase',
-                  marginBottom: '20px',
-                  textAlign: 'center',
-                }}
-              >
+            <div className="sd-home-compare-panel sd-home-compare-panel--sugar">
+              <div className="sd-home-compare-heading sd-home-compare-heading--sugar sd-logo-type">
                 Sugar Down
               </div>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '14px',
-                  position: 'relative',
-                  zIndex: 1,
-                }}
-              >
+              <div className="sd-home-compare-list">
                 {[
                   '100% focused on diabetes — nothing else, ever',
                   'Complete 3-step morning, daytime & night system',
                   'Dedicated sleep capsule targeting cortisol & sugar',
                   '24×7 WhatsApp support — real people, real answers',
                 ].map((t) => (
-                  <div
-                    key={t}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '10px',
-                    }}
-                  >
-                    <span
-                      style={{
-                        color: 'var(--green-accent)',
-                        fontSize: '15px',
-                        fontWeight: 700,
-                        flexShrink: 0,
-                      }}
-                    >
+                  <div key={t} className="sd-home-compare-item">
+                    <span className="sd-home-compare-mark sd-home-compare-mark--good">
                       ✓
                     </span>
-                    <span
-                      style={{
-                        fontSize: '13px',
-                        color: 'rgba(255,255,255,0.85)',
-                        lineHeight: 1.5,
-                      }}
-                    >
+                    <span className="sd-home-compare-text sd-home-compare-text--sugar">
                       {t}
                     </span>
                   </div>
@@ -386,49 +266,7 @@ export function SugarDownHome() {
             <br />
             Shouldn&apos;t Feel Like This.
           </h2>
-          <div className="pain-grid">
-            {[
-              {
-                n: '01',
-                t: 'Sugar spikes even after medicine',
-                d: 'You take your pills on time. Yet the sugar report still disappoints.',
-              },
-              {
-                n: '02',
-                t: 'Exhausted by 2 PM every day',
-                d: 'That afternoon crash. No energy to work, play or even talk.',
-              },
-              {
-                n: '03',
-                t: 'Sleepless nights worsening sugar',
-                d: 'Poor sleep raises cortisol. Cortisol spikes blood sugar.',
-              },
-              {
-                n: '04',
-                t: 'Zero guidance on what to eat',
-                d: 'Doctors say “eat less sugar.” No meal plan, no follow-up.',
-              },
-              {
-                n: '05',
-                t: 'Years on medicines with no end',
-                d: 'Allopathic medicines manage. They don’t heal.',
-              },
-              {
-                n: '06',
-                t: 'Bought products. Got no support.',
-                d: 'You ordered. It arrived. Then — silence.',
-              },
-            ].map((x, i) => (
-              <div
-                key={x.n}
-                className={`pain-card fade-up fade-up-d${(i % 4) + 1}`}
-              >
-                <div className="pain-num">{x.n}</div>
-                <div className="pain-title">{x.t}</div>
-                <div className="pain-desc">{x.d}</div>
-              </div>
-            ))}
-          </div>
+          <HomePainStack />
           <div className="pain-bridge fade-up">
             <h3>
               Sugar Down was built to <span>fix every single one</span> of
@@ -638,7 +476,7 @@ export function SugarDownHome() {
       </section>
 
       <section className="ingr-section section" id="ingredients">
-        <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+        <div className="ingr-section-inner">
           <div className="sd-section-intro">
             <span
               className="section-tag"
@@ -658,67 +496,76 @@ export function SugarDownHome() {
           <div className="ingr-grid">
             {[
               {
-                e: '🫐',
+                emoji: '🫐',
                 n: 'Jamun',
-                b: 'Controls blood sugar & improves insulin response naturally',
-                t: 'Blood Sugar',
+                benefit:
+                  'Controls blood sugar & improves insulin response naturally',
+                tag: 'Blood Sugar',
                 d: 'fade-up-d1',
               },
               {
-                e: '🌱',
+                emoji: '🌱',
                 n: 'Karela',
-                b: 'Reduces glucose absorption from food you eat',
-                t: 'Glucose Control',
+                benefit: 'Reduces glucose absorption from food you eat',
+                tag: 'Glucose Control',
                 d: 'fade-up-d2',
               },
               {
-                e: '🪴',
+                emoji: '🪴',
                 n: 'Gurmar',
-                b: '"Sugar Destroyer" — eliminates sugar cravings at the root',
-                t: 'Cravings',
+                benefit:
+                  '"Sugar Destroyer" — eliminates sugar cravings at the root',
+                tag: 'Cravings',
                 d: 'fade-up-d3',
               },
               {
-                e: '🌾',
+                emoji: '🌾',
                 n: 'Methi',
-                b: 'Slows sugar absorption & supports cholesterol balance',
-                t: 'Absorption',
+                benefit: 'Slows sugar absorption & supports cholesterol balance',
+                tag: 'Absorption',
                 d: 'fade-up-d4',
               },
               {
-                e: '🍃',
+                emoji: '🍃',
                 n: 'Giloy',
-                b: 'Boosts immunity & dramatically improves insulin sensitivity',
-                t: 'Immunity',
+                benefit:
+                  'Boosts immunity & dramatically improves insulin sensitivity',
+                tag: 'Immunity',
                 d: 'fade-up-d1',
               },
               {
-                e: '🍈',
+                emoji: '🍈',
                 n: 'Amla',
-                b: 'Rich in Vitamin C — improves metabolism & cell health',
-                t: 'Antioxidant',
+                benefit: 'Rich in Vitamin C — improves metabolism & cell health',
+                tag: 'Antioxidant',
                 d: 'fade-up-d2',
               },
               {
-                e: '🌿',
+                emoji: '🌿',
                 n: 'Ashwagandha',
-                b: 'Reduces cortisol & stress — hidden cause of sugar spikes',
-                t: 'Stress',
+                benefit:
+                  'Reduces cortisol & stress — hidden cause of sugar spikes',
+                tag: 'Stress',
                 d: 'fade-up-d3',
               },
               {
-                e: '🌼',
+                emoji: '🌼',
                 n: 'Brahmi',
-                b: 'Mental clarity, calm mind & deep restful sleep',
-                t: 'Sleep & Mind',
+                benefit: 'Mental clarity, calm mind & deep restful sleep',
+                tag: 'Sleep & Mind',
                 d: 'fade-up-d4',
               },
             ].map((x) => (
-              <div key={x.n} className={`ingr-card fade-up ${x.d}`}>
-                <span className="ingr-emoji">{x.e}</span>
+              <div
+                key={x.n}
+                className={`ingr-card fade-up ${x.d}`}
+              >
+                <span className="ingr-emoji" aria-hidden>
+                  {x.emoji}
+                </span>
                 <div className="ingr-name">{x.n}</div>
-                <div className="ingr-benefit">{x.b}</div>
-                <span className="ingr-tag">{x.t}</span>
+                <div className="ingr-benefit">{x.benefit}</div>
+                <span className="ingr-tag">{x.tag}</span>
               </div>
             ))}
           </div>

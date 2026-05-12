@@ -10,6 +10,7 @@
   --blk: #0f1a13;
   --gray: #5a6660;
   --gray-l: #9aa49f;
+  --sd-font-logo: 'Gagalin', 'Playfair Display', Georgia, serif;
 }
 
 .sd-catalog .sd-catalog-top {
@@ -219,10 +220,10 @@
   display: block;
 }
 .sd-catalog .sd-legacy-logo-main {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  font-weight: 900;
-  letter-spacing: 2px;
+  font-family: var(--sd-font-logo);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   color: #fff;
 }
 .sd-catalog .sd-legacy-logo-sub {

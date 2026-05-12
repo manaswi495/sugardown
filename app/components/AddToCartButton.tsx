@@ -7,6 +7,7 @@ export function AddToCartButton({
   className,
   disabled,
   lines,
+  loadingText = 'Adding...',
   onClick,
 }: {
   analytics?: unknown;
@@ -14,10 +15,16 @@ export function AddToCartButton({
   className?: string;
   disabled?: boolean;
   lines: Array<OptimisticCartLineInput>;
+  loadingText?: string;
   onClick?: () => void;
 }) {
   return (
-    <CartForm route="/cart" inputs={{lines}} action={CartForm.ACTIONS.LinesAdd}>
+    <CartForm
+      fetcherKey="cart-lines-add"
+      route="/cart"
+      inputs={{lines}}
+      action={CartForm.ACTIONS.LinesAdd}
+    >
       {(fetcher: FetcherWithComponents<any>) => (
         <>
           <input
@@ -30,8 +37,10 @@ export function AddToCartButton({
             className={className}
             onClick={onClick}
             disabled={disabled ?? fetcher.state !== 'idle'}
+            aria-busy={fetcher.state !== 'idle'}
+            data-loading={fetcher.state !== 'idle' ? 'true' : 'false'}
           >
-            {children}
+            {fetcher.state !== 'idle' ? loadingText : children}
           </button>
         </>
       )}

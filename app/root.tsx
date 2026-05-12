@@ -71,8 +71,17 @@ export function links() {
       crossOrigin: 'anonymous',
     },
     {
+      rel: 'preconnect',
+      href: 'https://fonts.cdnfonts.com',
+      crossOrigin: 'anonymous',
+    },
+    {
       rel: 'stylesheet',
       href: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap',
+    },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.cdnfonts.com/css/gagalin',
     },
     {rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'},
     {rel: 'apple-touch-icon', href: '/favicon.svg'},

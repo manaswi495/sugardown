@@ -390,6 +390,11 @@
   cursor: not-allowed;
 }
 
+.sd-pdp-add-btn[data-loading='true'] {
+  opacity: 0.92;
+  cursor: progress;
+}
+
 .sd-pdp-trust-list {
   list-style: none;
   margin: 1.15rem 0 0;

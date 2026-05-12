@@ -2,7 +2,7 @@ import type {CartLineUpdateInput} from '@shopify/hydrogen/storefront-api-types';
 import type {CartLayout, LineItemChildrenMap} from '~/components/CartMain';
 import {CartForm, Image, type OptimisticCartLine} from '@shopify/hydrogen';
 import {useVariantUrl} from '~/lib/variants';
-import {Link} from 'react-router';
+import {type FetcherWithComponents, Link} from 'react-router';
 import {ProductPrice} from './ProductPrice';
 import {useAside} from './Aside';
 import type {
@@ -122,27 +122,35 @@ function CartLineQuantity({line}: {line: CartLine}) {
       <span className="sd-cart-qty-label">Qty</span>
       <div className="sd-cart-qty-stepper">
         <CartLineUpdateButton lines={[{id: lineId, quantity: prevQuantity}]}>
-          <button
-            className="sd-cart-qty-btn"
-            aria-label="Decrease quantity"
-            disabled={quantity <= 1 || !!isOptimistic}
-            name="decrease-quantity"
-            value={prevQuantity}
-          >
-            −
-          </button>
+          {(isSubmitting) => (
+            <button
+              className="sd-cart-qty-btn"
+              aria-label="Decrease quantity"
+              disabled={quantity <= 1 || !!isOptimistic || isSubmitting}
+              name="decrease-quantity"
+              value={prevQuantity}
+              aria-busy={isSubmitting}
+              data-loading={isSubmitting ? 'true' : 'false'}
+            >
+              −
+            </button>
+          )}
         </CartLineUpdateButton>
         <span className="sd-cart-qty-value">{quantity}</span>
         <CartLineUpdateButton lines={[{id: lineId, quantity: nextQuantity}]}>
-          <button
-            className="sd-cart-qty-btn"
-            aria-label="Increase quantity"
-            name="increase-quantity"
-            value={nextQuantity}
-            disabled={!!isOptimistic}
-          >
-            +
-          </button>
+          {(isSubmitting) => (
+            <button
+              className="sd-cart-qty-btn"
+              aria-label="Increase quantity"
+              name="increase-quantity"
+              value={nextQuantity}
+              disabled={!!isOptimistic || isSubmitting}
+              aria-busy={isSubmitting}
+              data-loading={isSubmitting ? 'true' : 'false'}
+            >
+              +
+            </button>
+          )}
         </CartLineUpdateButton>
       </div>
       <CartLineRemoveButton lineIds={[lineId]} disabled={!!isOptimistic} />
@@ -164,18 +172,25 @@ function CartLineRemoveButton({
 }) {
   return (
     <CartForm
-      fetcherKey={getUpdateKey(lineIds)}
+      fetcherKey={getCartActionKey(CartForm.ACTIONS.LinesRemove, lineIds)}
       route="/cart"
       action={CartForm.ACTIONS.LinesRemove}
       inputs={{lineIds}}
     >
-      <button
-        className="sd-cart-remove"
-        disabled={disabled}
-        type="submit"
-      >
-        Remove
-      </button>
+      {(fetcher: FetcherWithComponents<any>) => {
+        const isSubmitting = fetcher.state !== 'idle';
+        return (
+          <button
+            className="sd-cart-remove"
+            disabled={disabled || isSubmitting}
+            aria-busy={isSubmitting}
+            data-loading={isSubmitting ? 'true' : 'false'}
+            type="submit"
+          >
+            {isSubmitting ? 'Removing...' : 'Remove'}
+          </button>
+        );
+      }}
     </CartForm>
   );
 }
@@ -184,19 +199,19 @@ function CartLineUpdateButton({
   children,
   lines,
 }: {
-  children: React.ReactNode;
+  children: (isSubmitting: boolean) => React.ReactNode;
   lines: CartLineUpdateInput[];
 }) {
   const lineIds = lines.map((line) => line.id);
 
   return (
     <CartForm
-      fetcherKey={getUpdateKey(lineIds)}
+      fetcherKey={getCartActionKey(CartForm.ACTIONS.LinesUpdate, lineIds)}
       route="/cart"
       action={CartForm.ACTIONS.LinesUpdate}
       inputs={{lines}}
     >
-      {children}
+      {(fetcher: FetcherWithComponents<any>) => children(fetcher.state !== 'idle')}
     </CartForm>
   );
 }
@@ -208,6 +223,6 @@ function CartLineUpdateButton({
  * @param lineIds - line ids affected by the update
  * @returns
  */
-function getUpdateKey(lineIds: string[]) {
-  return [CartForm.ACTIONS.LinesUpdate, ...lineIds].join('-');
+function getCartActionKey(action: string, lineIds: string[]) {
+  return [action, ...lineIds].join('-');
 }

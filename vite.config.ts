@@ -34,5 +34,10 @@ export default defineConfig({
   },
   server: {
     allowedHosts: ['.tryhydrogen.dev'],
+    watch: {
+      // Ensures HMR picks up changes reliably across all app files on Windows/dev environments.
+      usePolling: true,
+      interval: 100,
+    },
   },
 });

@@ -28,7 +28,7 @@ export function Header({
     <header className="header sd-header">
       <NavLink prefetch="intent" to="/" end className="sd-brand">
         <strong className="sd-brand-title">{shop.name}</strong>
-        <span className="sd-brand-sub">BY LUCKY HEART AYURVEDA</span>
+        <span className="sd-brand-sub">BY LUCKY HEART</span>
       </NavLink>
       <HeaderMenu
         menu={

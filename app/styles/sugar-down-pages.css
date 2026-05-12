@@ -15,6 +15,7 @@
   --sdp-blk: #0f1a13;
   --sdp-gray: #5a6660;
   --sdp-gray-l: #9aa49f;
+  --sd-font-logo: 'Gagalin', 'Playfair Display', Georgia, serif;
 }
 
 /* ── ABOUT (legacy about.css) ── */
@@ -144,10 +145,10 @@
   align-items: start;
 }
 .sdp-about .sdp-ab-logo-main {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: 2px;
+  font-family: var(--sd-font-logo);
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   color: var(--sdp-gd);
 }
 .sdp-about .sdp-ab-logo-sub {
