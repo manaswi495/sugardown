@@ -5,15 +5,15 @@
 
 .footer.premium-footer {
   display: block;
-  background: #1b4d2e;
+  background: linear-gradient(180deg, #d4edc9 0%, #b8dfc4 55%, #a5d6a7 100%);
   margin-top: auto;
   padding: 100px 6% 60px;
-  color: #fff !important;
+  color: #0f1a13 !important;
   font-family:
     'DM Sans',
     system-ui,
     sans-serif;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(27, 77, 46, 0.12);
   position: relative;
   z-index: 10;
 }
@@ -39,7 +39,7 @@
   font-size: 30px;
   font-weight: 400;
   letter-spacing: 0.06em;
-  color: #fff;
+  color: #1b4d2e;
 }
 
 .premium-footer .logo-sub {
@@ -53,7 +53,7 @@
 
 .premium-footer .footer-tagline {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(15, 26, 19, 0.78);
   line-height: 1.8;
   margin-bottom: 24px;
   max-width: 400px;
@@ -61,7 +61,7 @@
 
 .premium-footer .footer-mission {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(15, 26, 19, 0.55);
   line-height: 1.6;
   max-width: 400px;
 }
@@ -71,7 +71,7 @@
   font-weight: 800;
   letter-spacing: 3px;
   margin-bottom: 32px;
-  color: #fff;
+  color: #1b4d2e;
   text-transform: uppercase;
   position: relative;
 }
@@ -96,20 +96,20 @@
 }
 
 .premium-footer .footer-link-list a {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(15, 26, 19, 0.72);
   text-decoration: none;
   font-size: 15px;
   transition: all 0.3s;
 }
 
 .premium-footer .footer-link-list a:hover {
-  color: #c8972a;
+  color: #9a6f12;
   padding-left: 8px;
 }
 
 .premium-footer .support-text {
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(15, 26, 19, 0.62);
   margin-bottom: 24px;
   font-weight: 500;
 }
@@ -118,7 +118,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #fff;
+  color: #1b4d2e;
   text-decoration: none;
   font-size: 15px;
   font-weight: 600;
@@ -133,13 +133,13 @@
 .premium-footer .footer-quick-actions {
   margin-top: 32px;
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(27, 77, 46, 0.12);
 }
 
 .premium-footer .action-label {
   font-size: 11px;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(15, 26, 19, 0.45);
   letter-spacing: 2px;
   display: block;
   margin-bottom: 16px;
@@ -154,9 +154,9 @@
   flex: 1;
   padding: 12px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(27, 77, 46, 0.14);
+  color: #1b4d2e;
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
@@ -176,7 +176,7 @@
   padding: 0 6%;
   margin: 0 auto 50px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(27, 77, 46, 0.12);
   background-clip: content-box;
 }
 
@@ -207,14 +207,14 @@
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(27, 77, 46, 0.14);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s;
   text-decoration: none;
-  color: #fff;
+  color: #1b4d2e;
 }
 
 .premium-footer .social-icon:hover {
@@ -226,7 +226,7 @@
 
 .premium-footer .footer-copyright {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(15, 26, 19, 0.48);
   font-weight: 600;
   letter-spacing: 1px;
 }
@@ -238,7 +238,7 @@
 }
 
 .premium-footer .footer-bottom-links a {
-  color: #fff;
+  color: #1b4d2e;
   text-decoration: none;
   font-size: 12px;
   font-weight: 800;
@@ -247,7 +247,7 @@
 }
 
 .premium-footer .footer-bottom-links a:hover {
-  color: #c8972a;
+  color: #9a6f12;
 }
 
 @media (max-width: 900px) {
