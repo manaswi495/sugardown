@@ -707,6 +707,9 @@ body {
     sans-serif;
   background: var(--sd-cream);
   color: var(--sd-blk);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .header.sd-header {
@@ -847,7 +850,7 @@ body {
   border-radius: 999px;
   background: linear-gradient(145deg, #e0b347, #c8972a);
   color: #0f1a13 !important;
-  font-size: 0.62rem;
+  font-size: max(0.6875rem, 11px);
   font-weight: 800;
   line-height: 1rem;
   text-align: center;
@@ -932,10 +935,11 @@ body {
 }
 
 .sd-brand-sub {
-  font-size: 0.55rem;
-  letter-spacing: 0.18em;
+  font-size: max(0.625rem, 10px);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--sd-gold);
+  color: #8a6410;
+  font-weight: 600;
 }
 
 .sd-order-now {
@@ -1125,7 +1129,7 @@ body {
   }
 
   .sd-brand-sub {
-    font-size: 0.48rem;
+    font-size: max(0.56rem, 9px);
     letter-spacing: 0.12em;
     white-space: nowrap;
   }

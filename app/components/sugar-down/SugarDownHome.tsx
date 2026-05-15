@@ -258,10 +258,143 @@ export function SugarDownHome() {
         </div>
       </section>
 
+      <section className="pricing-section section" id="pricing">
+        <div className="pricing-section-inner">
+          <div className="sd-section-intro">
+            <span
+              className="section-tag"
+              style={{display: 'block', textAlign: 'center'}}
+            >
+              Choose Your Kit
+            </span>
+            <h2 className="section-title centered fade-up">
+              Two Kits. One Purpose.
+              <br />
+              Complete Diabetes Care.
+            </h2>
+            <p className="section-sub centered fade-up">
+              Both kits include 5% discount, free shipping & full support. No
+              hidden charges.
+            </p>
+          </div>
+          <div className="pricing-kit-strip fade-up">
+            <div className="pricing-kit-strip__tile">
+              <img
+                src="/balanced-kit.png"
+                alt="Sugar Down Balanced Kit"
+                className="pricing-kit-strip__img"
+              />
+              <span className="pricing-kit-strip__badge pricing-kit-strip__badge--balanced">
+                ⭐ BALANCED KIT
+              </span>
+            </div>
+            <div className="pricing-kit-strip__tile">
+              <img
+                src="/core-kit.png"
+                alt="Sugar Down Core Kit"
+                className="pricing-kit-strip__img"
+              />
+              <span className="pricing-kit-strip__badge pricing-kit-strip__badge--core">
+                CORE KIT
+              </span>
+            </div>
+          </div>
+          <div className="pricing-grid pricing-grid--after-strip">
+            <div className="pricing-card featured fade-up fade-up-d1">
+              <div className="featured-badge">⭐ Most Recommended</div>
+              <div className="pricing-header">
+                <div className="pricing-kit-label">Sugar Down</div>
+                <div className="pricing-kit-name">Balanced Kit</div>
+                <div className="pricing-amount">
+                  <span className="pricing-currency">₹</span>
+                  <span className="pricing-number">1,670</span>
+                </div>
+                <div className="pricing-perday">
+                  Just <span>₹55/day</span> for complete day-night care
+                </div>
+              </div>
+              <div className="pricing-body">
+                <ul className="pricing-items">
+                  <li>
+                    <span className="check">✓</span> Pravahi Kwath (500ml)
+                  </li>
+                  <li>
+                    <span className="check">✓</span> Diabetes Care Capsules
+                    (60)
+                  </li>
+                  <li>
+                    <span className="check">✓</span> Sleep Care Capsules (30)
+                  </li>
+                  <li>
+                    <span className="check">✓</span> 24×7 WhatsApp Support
+                  </li>
+                  <li>
+                    <span className="check">✓</span> Daily Follow-ups
+                  </li>
+                </ul>
+                <div className="pricing-offers">
+                  <span className="offer-pill">5% Off</span>
+                  <span className="offer-pill">Free Shipping</span>
+                  <span className="offer-pill">Best Value</span>
+                </div>
+                <Link to="/products" className="pricing-btn solid">
+                  Order Balanced Kit →
+                </Link>
+              </div>
+            </div>
+            <div className="pricing-card fade-up fade-up-d2">
+              <div className="pricing-header">
+                <div className="pricing-kit-label">Sugar Down</div>
+                <div className="pricing-kit-name">Core Kit</div>
+                <div className="pricing-amount">
+                  <span className="pricing-currency">₹</span>
+                  <span className="pricing-number">1,310</span>
+                </div>
+                <div className="pricing-perday">
+                  Just <span>₹44/day</span> for morning + daytime care
+                </div>
+              </div>
+              <div className="pricing-body">
+                <ul className="pricing-items">
+                  <li>
+                    <span className="check">✓</span> Pravahi Kwath (500ml)
+                  </li>
+                  <li>
+                    <span className="check">✓</span> Diabetes Care Capsules
+                    (60)
+                  </li>
+                  <li>
+                    <span className="check">✓</span> 24×7 WhatsApp Support
+                  </li>
+                  <li>
+                    <span className="check">✓</span> Daily Follow-ups
+                  </li>
+                  <li>
+                    <span className="cross">✗</span>{' '}
+                    <span style={{opacity: 0.4}}>Sleep Care Capsules</span>
+                  </li>
+                </ul>
+                <div className="pricing-offers">
+                  <span className="offer-pill">5% Off</span>
+                  <span className="offer-pill">Free Shipping</span>
+                </div>
+                <Link to="/products" className="pricing-btn outline">
+                  Order Core Kit →
+                </Link>
+              </div>
+            </div>
+          </div>
+          <p className="pricing-note">
+            💚 <strong>Every order</strong> includes personal daily follow-up &
+            24×7 WhatsApp access — for the entire month.
+          </p>
+        </div>
+      </section>
+
       <section className="pain-section">
-        <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+        <div className="pain-section-inner">
           <span className="section-tag fade-up">The Hard Truth</span>
-          <h2 className="section-title fade-up fade-up-d1" style={{color: 'white'}}>
+          <h2 className="section-title fade-up fade-up-d1">
             Living with Diabetes
             <br />
             Shouldn&apos;t Feel Like This.
@@ -569,208 +702,6 @@ export function SugarDownHome() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="pricing-section section" id="pricing">
-        <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-          <div className="sd-section-intro">
-            <span
-              className="section-tag"
-              style={{display: 'block', textAlign: 'center'}}
-            >
-              Choose Your Kit
-            </span>
-            <h2 className="section-title centered fade-up">
-              Two Kits. One Purpose.
-              <br />
-              Complete Diabetes Care.
-            </h2>
-            <p className="section-sub centered fade-up">
-              Both kits include 5% discount, free shipping & full support. No
-              hidden charges.
-            </p>
-          </div>
-          <div
-            className="fade-up"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '20px',
-              margin: '40px 0 0',
-              maxWidth: '900px',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-            }}
-          >
-            <div
-              style={{
-                borderRadius: '16px',
-                overflow: 'hidden',
-                border: '1px solid rgba(27,77,46,0.1)',
-                background: 'var(--green-light)',
-                aspectRatio: '3/2',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-              }}
-            >
-              <img
-                src="/core-kit.png"
-                alt="Sugar Down Core Kit"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
-              <span
-                style={{
-                  position: 'absolute',
-                  top: '10px',
-                  left: '10px',
-                  background: 'var(--green-dark)',
-                  color: 'white',
-                  fontSize: '10px',
-                  fontWeight: 700,
-                  padding: '4px 10px',
-                  borderRadius: '20px',
-                }}
-              >
-                CORE KIT
-              </span>
-            </div>
-            <div
-              style={{
-                borderRadius: '16px',
-                overflow: 'hidden',
-                border: '1px solid rgba(27,77,46,0.1)',
-                background: 'var(--green-light)',
-                aspectRatio: '3/2',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-              }}
-            >
-              <img
-                src="/balanced-kit.png"
-                alt="Sugar Down Balanced Kit"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
-              <span
-                style={{
-                  position: 'absolute',
-                  top: '10px',
-                  left: '10px',
-                  background: 'var(--gold)',
-                  color: '#000',
-                  fontSize: '10px',
-                  fontWeight: 700,
-                  padding: '4px 10px',
-                  borderRadius: '20px',
-                }}
-              >
-                ⭐ BALANCED KIT
-              </span>
-            </div>
-          </div>
-          <div className="pricing-grid" style={{marginTop: '32px'}}>
-            <div className="pricing-card fade-up fade-up-d1">
-              <div className="pricing-header">
-                <div className="pricing-kit-label">Sugar Down</div>
-                <div className="pricing-kit-name">Core Kit</div>
-                <div className="pricing-amount">
-                  <span className="pricing-currency">₹</span>
-                  <span className="pricing-number">1,310</span>
-                </div>
-                <div className="pricing-perday">
-                  Just <span>₹44/day</span> for morning + daytime care
-                </div>
-              </div>
-              <div className="pricing-body">
-                <ul className="pricing-items">
-                  <li>
-                    <span className="check">✓</span> Pravahi Kwath (500ml)
-                  </li>
-                  <li>
-                    <span className="check">✓</span> Diabetes Care Capsules
-                    (60)
-                  </li>
-                  <li>
-                    <span className="check">✓</span> 24×7 WhatsApp Support
-                  </li>
-                  <li>
-                    <span className="check">✓</span> Daily Follow-ups
-                  </li>
-                  <li>
-                    <span className="cross">✗</span>{' '}
-                    <span style={{opacity: 0.4}}>Sleep Care Capsules</span>
-                  </li>
-                </ul>
-                <div className="pricing-offers">
-                  <span className="offer-pill">5% Off</span>
-                  <span className="offer-pill">Free Shipping</span>
-                </div>
-                <Link to="/products" className="pricing-btn outline">
-                  Order Core Kit →
-                </Link>
-              </div>
-            </div>
-            <div className="pricing-card featured fade-up fade-up-d2">
-              <div className="featured-badge">⭐ Most Recommended</div>
-              <div className="pricing-header">
-                <div className="pricing-kit-label">Sugar Down</div>
-                <div className="pricing-kit-name">Balanced Kit</div>
-                <div className="pricing-amount">
-                  <span className="pricing-currency">₹</span>
-                  <span className="pricing-number">1,670</span>
-                </div>
-                <div className="pricing-perday">
-                  Just <span>₹55/day</span> for complete day-night care
-                </div>
-              </div>
-              <div className="pricing-body">
-                <ul className="pricing-items">
-                  <li>
-                    <span className="check">✓</span> Pravahi Kwath (500ml)
-                  </li>
-                  <li>
-                    <span className="check">✓</span> Diabetes Care Capsules
-                    (60)
-                  </li>
-                  <li>
-                    <span className="check">✓</span> Sleep Care Capsules (30)
-                  </li>
-                  <li>
-                    <span className="check">✓</span> 24×7 WhatsApp Support
-                  </li>
-                  <li>
-                    <span className="check">✓</span> Daily Follow-ups
-                  </li>
-                </ul>
-                <div className="pricing-offers">
-                  <span className="offer-pill">5% Off</span>
-                  <span className="offer-pill">Free Shipping</span>
-                  <span className="offer-pill">Best Value</span>
-                </div>
-                <Link to="/products" className="pricing-btn solid">
-                  Order Balanced Kit →
-                </Link>
-              </div>
-            </div>
-          </div>
-          <p className="pricing-note">
-            💚 <strong>Every order</strong> includes personal daily follow-up &
-            24×7 WhatsApp access — for the entire month.
-          </p>
         </div>
       </section>
 
