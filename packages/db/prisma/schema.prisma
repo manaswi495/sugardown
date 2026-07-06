@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Product {
+  id            String   @id @default(uuid())
+  handle        String   @unique
+  sku           String?  @unique
+  title         String
+  price         Int
+  originalPrice Int?
+  stock         Int      @default(0)
+  image         String
+  media         String[] @default([])
+  description   String
+  benefits      String[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  OrderItems    OrderItem[]
+}
+
+model User {
+  id        String   @id @default(uuid())
+  phone     String   @unique
+  address   String?
+  city      String?
+  pincode   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Orders    Order[]
+}
+
+model Order {
+  id                String      @id @default(uuid())
+  razorpay_order_id String?     @unique
+  razorpay_payment_id String?   @unique
+  totalAmount       Int
+  status            String      @default("PENDING") // PENDING, PAID, SHIPPED, DELIVERED, CANCELLED
+  awbNumber         String?
+  userId            String
+  user              User        @relation(fields: [userId], references: [id])
+  items             OrderItem[]
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Int     // Price at the time of purchase
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String   // Hashed password
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSetting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}

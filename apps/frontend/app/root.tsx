@@ -1,0 +1,237 @@
+
+import {
+  Outlet,
+  useRouteError,
+  isRouteErrorResponse,
+  type ShouldRevalidateFunction,
+  Links,
+  Meta,
+  Scripts,
+  ScrollRestoration,
+  useRouteLoaderData,
+} from 'react-router';
+import type {Route} from './+types/root';
+import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
+import resetStyles from '~/styles/reset.css?url';
+import appStyles from '~/styles/app.css?url';
+import footerStyles from '~/styles/sugar-down-footer.css?url';
+import {PageLayout} from './components/PageLayout';
+
+export type RootLoader = typeof loader;
+
+/**
+ * This is important to avoid re-fetching root queries on sub-navigations
+ */
+export const shouldRevalidate: ShouldRevalidateFunction = ({
+  formMethod,
+  currentUrl,
+  nextUrl,
+}) => {
+  // revalidate when a mutation is performed e.g add to cart, login...
+  if (formMethod && formMethod !== 'GET') return true;
+
+  // revalidate when manually revalidating via useRevalidator
+  if (currentUrl.toString() === nextUrl.toString()) return true;
+
+  // Defaulting to no revalidation for root loader data to improve performance.
+  // When using this feature, you risk your UI getting out of sync with your server.
+  // Use with caution. If you are uncomfortable with this optimization, update the
+  // line below to `return defaultShouldRevalidate` instead.
+  // For more details see: https://remix.run/docs/en/main/route/should-revalidate
+  return false;
+};
+
+/**
+ * The main and reset stylesheets are added in the Layout component
+ * to prevent a bug in development HMR updates.
+ *
+ * This avoids the "failed to execute 'insertBefore' on 'Node'" error
+ * that occurs after editing and navigating to another page.
+ *
+ * It's a temporary fix until the issue is resolved.
+ * https://github.com/remix-run/remix/issues/9242
+ */
+export function links() {
+  return [
+    {
+      rel: 'preconnect',
+      href: 'https://cdn.shopify.com',
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://shop.app',
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.googleapis.com',
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.cdnfonts.com',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap',
+    },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.cdnfonts.com/css/gagalin',
+    },
+    {rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'},
+    {rel: 'apple-touch-icon', href: '/favicon.svg'},
+  ];
+}
+
+export async function loader(args: Route.LoaderArgs) {
+  // Gracefully handle missing storefront context (if server.ts is missing)
+  if (!args.context.storefront) {
+    return {
+      header: {
+        shop: {
+          name: 'Sugar Down',
+          primaryDomain: {url: 'http://localhost:3000'},
+        },
+        menu: null,
+      },
+      cart: Promise.resolve(null),
+      isLoggedIn: Promise.resolve(false),
+      footer: null,
+      publicStoreDomain: 'localhost',
+      shop: {},
+      consent: {},
+    };
+  }
+
+  const criticalData = await loadCriticalData(args);
+  const deferredData = loadDeferredData(args);
+
+  return {
+    ...deferredData,
+    ...criticalData,
+    publicStoreDomain: args.context.env?.PUBLIC_STORE_DOMAIN || '',
+    consent: {},
+  };
+}
+
+/**
+ * Load data necessary for rendering content above the fold. This is the critical data
+ * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
+ */
+async function loadCriticalData({context}: Route.LoaderArgs) {
+  const {storefront} = context;
+
+  const [header] = await Promise.all([
+    storefront.query(HEADER_QUERY, {
+      cache: storefront.CacheLong(),
+      variables: {
+        headerMenuHandle: 'main-menu', // Adjust to your header menu handle
+      },
+    }),
+    // Add other queries here, so that they are loaded in parallel
+  ]);
+
+  return {header};
+}
+
+/**
+ * Load data for rendering content below the fold. This data is deferred and will be
+ * fetched after the initial page load. If it's unavailable, the page should still 200.
+ * Make sure to not throw any errors here, as it will cause the page to 500.
+ */
+function loadDeferredData({context}: Route.LoaderArgs) {
+  const {storefront, customerAccount, cart} = context;
+
+  // defer the footer query (below the fold)
+  const footer = storefront
+    .query(FOOTER_QUERY, {
+      cache: storefront.CacheLong(),
+      variables: {
+        footerMenuHandle: 'footer', // Adjust to your footer menu handle
+      },
+    })
+    .catch((error: Error) => {
+      // Log query errors, but don't throw them so the page can still render
+      console.error(error);
+      return null;
+    });
+  return {
+    cart: cart.get(),
+    // On localhost, Customer Account token refresh / API calls can fail; treat as logged out instead of 500ing the whole document.
+    isLoggedIn: customerAccount.isLoggedIn().catch((error: unknown) => {
+      console.error(error);
+      return false;
+    }),
+    footer,
+  };
+}
+
+export function Layout({children}: {children?: React.ReactNode}) {
+
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="stylesheet" href={resetStyles}></link>
+        <link rel="stylesheet" href={appStyles}></link>
+        <link rel="stylesheet" href={footerStyles}></link>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+import { CartProvider } from '~/context/CartContext';
+
+export default function App() {
+  const data = useRouteLoaderData<RootLoader>('root');
+
+  if (!data) {
+    return <Outlet />;
+  }
+
+  return (
+    <CartProvider>
+      <PageLayout {...data as any}>
+        <Outlet />
+      </PageLayout>
+    </CartProvider>
+  );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  let errorMessage = 'Unknown error';
+  let errorStatus = 500;
+
+  if (isRouteErrorResponse(error)) {
+    errorMessage = error?.data?.message ?? error.data;
+    errorStatus = error.status;
+  } else if (error instanceof Error) {
+    errorMessage = error.message;
+  }
+
+  return (
+    <div className="route-error">
+      <h1>Oops</h1>
+      <h2>{errorStatus}</h2>
+      {errorMessage && (
+        <fieldset>
+          <pre>{errorMessage}</pre>
+        </fieldset>
+      )}
+    </div>
+  );
+}

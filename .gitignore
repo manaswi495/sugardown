@@ -1,19 +1,11 @@
 node_modules
-/.DS_Store
-/.cache
-/build
-/dist
-/public/build
-/.mf
 .env
-.shopify
-.react-router
-.next
-.cursor
-*.tsbuildinfo
-
-# Local stray assets
-/balanced kit.jpeg
-
-# Cursor IDE installers (do not commit)
-CursorUserSetup*.exe
+.env.*
+!.env.example
+.DS_Store
+dist/
+build/
+.cache/
+*.log
+coverage/
+.vercel/
